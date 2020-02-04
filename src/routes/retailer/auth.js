@@ -1,10 +1,14 @@
-const express = ('express');
-const authRouter = express.Router();
+const express = require('express');
+const retailerAuthRouter = express.Router();
 
 const {
   signupDispensary,
   loginDispensary,
 } = require('../../controllers/retailer')
 
-authRouter.post('/signup', signupDispensary);
-authRouter.post('/login' , loginDispensary);
+retailerAuthRouter.post('/signup', signupDispensary);
+retailerAuthRouter.post('/login' , loginDispensary);
+
+module.exports = {
+  retailerAuthRouter,
+};
