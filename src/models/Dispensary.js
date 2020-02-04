@@ -2,6 +2,9 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const dispensarySchema = new Schema({
+  email : {
+    type : String,
+  },
   name : {
     type : String,
   },
