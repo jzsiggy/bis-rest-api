@@ -16,12 +16,12 @@ const signupDispensary = (request , response , next) => {
       response.status(400).json({ 'message' : 'This dispensary is already registered in our system' })
       return ;
     } else {
-      hashPass = bcrypt.hashSync(password, 10);
+      const hashPass = bcrypt.hashSync(password, 10);
       Dispensary.create({
         email,
         name,
         address,
-        hashPass,
+        password : hashPass,
         stock,
       })
       .then( createdDispensary => {
@@ -30,6 +30,7 @@ const signupDispensary = (request , response , next) => {
         return ;
       })
       .catch(err => {
+        console.log(err);
         response.status(500).json({ 'message' : 'Internal server error' });
         return ;
       });

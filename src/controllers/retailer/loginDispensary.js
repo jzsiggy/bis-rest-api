@@ -1,5 +1,5 @@
+const bcrypt = require('bcrypt');
 const { Dispensary } = require('../../models');
-
 
 const loginDispensary = ( request , response , next ) => {
   const {
@@ -13,7 +13,7 @@ const loginDispensary = ( request , response , next ) => {
       response.status(400).json({ 'message' : 'Email not registered' });
       return ;
     } else {
-      if ( !bcrypt.compareSync(password, searchResult.password) ) {
+      if ( !bcrypt.compareSync(password, searchResult[0].password) ) {
         response.status(400).json({ 'message' : 'Incorrect password' });
         return ;
       }
@@ -25,6 +25,7 @@ const loginDispensary = ( request , response , next ) => {
     };
   })
   .catch(err => {
+    console.log(err);
     response.status(500).json({ 'message' : 'Internal server error' });
     return ;
   })
