@@ -1,0 +1,8 @@
+{
+  "name": "BIS-api",
+  "version": "1.0.0",
+  "description": "REST API for BIS Cannabis Delivery",
+  "main": "index.js",
+  "author": "jzsiggy",
+  "license": "MIT"
+}
