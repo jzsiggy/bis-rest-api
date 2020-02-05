@@ -6,8 +6,11 @@ const {
   loginDispensary,
 } = require('../../controllers/retailer')
 
+const { logout } = require('../../controllers/logout');
+
 retailerAuthRouter.post('/signup', signupDispensary);
 retailerAuthRouter.post('/login' , loginDispensary);
+retailerAuthRouter.post('/logout' , logout);
 
 module.exports = {
   retailerAuthRouter,

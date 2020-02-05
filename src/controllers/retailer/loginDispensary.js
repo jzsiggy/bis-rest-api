@@ -7,19 +7,17 @@ const loginDispensary = ( request , response , next ) => {
     password,
   } = request.body;
 
-  Dispensary.find({ email })
+  Dispensary.findOne({ email })
   .then( searchResult => {
-    if (!searchResult.length) {
-      response.status(400).json({ 'message' : 'Email not registered' });
-      return ;
+    if ( !searchResult ) {
+      return response.status(400).json({ 'message' : 'Email not registered' });
     } else {
-      if ( !bcrypt.compareSync(password, searchResult[0].password) ) {
-        response.status(400).json({ 'message' : 'Incorrect password' });
-        return ;
+      if ( !bcrypt.compareSync(password, searchResult.password) ) {
+        return response.status(400).json({ 'message' : 'Incorrect password' });
       }
       else {
-        request.session.user = searchResult[0];
-        response.status(200).json(searchResult[0]);
+        request.session.user = searchResult;
+        response.status(200).json(searchResult);
         return ;
       };
     };

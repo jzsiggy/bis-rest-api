@@ -10,9 +10,9 @@ const signupDispensary = (request , response , next) => {
     stock,
   } = request.body;
 
-  Dispensary.find({ email })
+  Dispensary.findOne({ email })
   .then( searchResult => {
-    if ( searchResult.length ) {
+    if ( searchResult ) {
       response.status(400).json({ 'message' : 'This dispensary is already registered in our system' })
       return ;
     } else {
