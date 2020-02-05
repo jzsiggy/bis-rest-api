@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const session = require('express-session');
+const cors = require('cors');
 
 const { mongooseConnect } = require('./config/mongooseConnect');
 mongooseConnect();
@@ -19,6 +20,8 @@ app.use((req, res, next) => {
   console.log(req.session.user);
   next();
 });
+
+app.use(cors());
 
 const { retailerAuthRouter } = require('./routes');
 app.use('/retail/', retailerAuthRouter);
