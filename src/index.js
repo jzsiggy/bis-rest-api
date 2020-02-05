@@ -1,13 +1,30 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const session = require('express-session');
 
-const { retailerAuthRouter } = require('./routes');
+const { mongooseConnect } = require('./config/mongooseConnect');
+mongooseConnect();
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended : false }));
 app.use(bodyParser.json());
 
-app.use('/retailer/', retailerAuthRouter);
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+}));
+
+app.use((req, res, next) => {
+  console.log(req.session.user);
+  next();
+});
+
+const { retailerAuthRouter } = require('./routes');
+app.use('/retail/', retailerAuthRouter);
+
+const { userAuthRouter } = require('./routes');
+app.use('/user/', userAuthRouter);
 
 app.listen(5000, () => {
   console.log(
