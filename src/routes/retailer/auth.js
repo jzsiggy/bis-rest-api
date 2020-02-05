@@ -4,9 +4,9 @@ const retailerAuthRouter = express.Router();
 const {
   signupDispensary,
   loginDispensary,
-} = require('../../controllers/retailer')
+} = require('../../controllers/auth/retailer')
 
-const { logout } = require('../../controllers/logout');
+const { logout } = require('../../controllers/auth/logout');
 
 retailerAuthRouter.post('/signup', signupDispensary);
 retailerAuthRouter.post('/login' , loginDispensary);

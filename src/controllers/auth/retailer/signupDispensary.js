@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt');
-const { Dispensary } = require('../../models');
+const { Dispensary } = require('../../../models');
 
 const signupDispensary = async (request , response , next) => {
   const {
@@ -10,7 +10,8 @@ const signupDispensary = async (request , response , next) => {
     stock,
   } = request.body;
 
-  const searchResult = Dispensary.findOne({ email })
+  const searchResult = await Dispensary.findOne({ email });
+  
   if ( searchResult ) {
     response.status(400).json({ 'message' : 'This dispensary is already registered in our system' })
     return ;

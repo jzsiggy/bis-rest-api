@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt');
-const { Dispensary } = require('../../models');
+const { Dispensary } = require('../../../models');
 
 const loginDispensary = async ( request , response , next ) => {
   const {
@@ -7,7 +7,7 @@ const loginDispensary = async ( request , response , next ) => {
     password,
   } = request.body;
 
-  const searchResult = Dispensary.findOne({ email });
+  const searchResult = await Dispensary.findOne({ email });
 
   if ( !searchResult ) {
     return response.status(400).json({ 'message' : 'Email not registered' });

@@ -4,9 +4,9 @@ const userAuthRouter = express.Router();
 const {
   loginUser,
   signupUser,
-} = require('../../controllers/user');
+} = require('../../controllers/auth/user');
 
-const { logout } = require('../../controllers/logout');
+const { logout } = require('../../controllers/auth/logout');
 
 userAuthRouter.post('/signup', signupUser);
 userAuthRouter.post('/login', loginUser);
