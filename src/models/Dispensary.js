@@ -16,7 +16,7 @@ const dispensarySchema = new Schema({
   },
   stock : [{
     type : Schema.Types.ObjectId,
-    ref : 'Item',
+    ref : 'Product',
   }],
 });
 
