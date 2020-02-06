@@ -16,12 +16,10 @@ app.use(session({
   saveUninitialized: true,
 }));
 
-app.use((req, res, next) => {
-  console.log(req.session.user);
-  next();
-});
-
-app.use(cors());
+app.use(cors({
+  origin : ['http://localhost:3000'],
+  credentials : true,
+}));
 
 const { retailerAuthRouter } = require('./routes');
 app.use('/retail/', retailerAuthRouter);
