@@ -30,6 +30,11 @@ const productSchema = new Schema({
   imageUrl : {
     type : String,
   },
+  category : {
+    type : [{
+      type : String,
+    }]
+  }
 });
 
 const Product = mongoose.model('Product', productSchema);
