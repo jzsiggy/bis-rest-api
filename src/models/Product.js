@@ -15,7 +15,7 @@ const productSchema = new Schema({
   description : {
     type : String,
   },
-  effects : {
+  effects : [{
     type : String,
     enum : [
       'Relaxed',
@@ -26,15 +26,16 @@ const productSchema = new Schema({
       'Pain Relief',
       'Hungry',
    ],
-  },
+  }],
   imageUrl : {
     type : String,
   },
-  category : {
-    type : [{
-      type : String,
-    }]
-  }
+  category : [{
+    type : String,
+  }],
+  price : {
+    type : Number,
+  },
 });
 
 const Product = mongoose.model('Product', productSchema);
