@@ -11,6 +11,9 @@ const userSchema = new Schema({
   id : {
     type : String,
   },
+  cart : {
+    type : Array,
+  },
 });
 
 const User = mongoose.model('User', userSchema);
