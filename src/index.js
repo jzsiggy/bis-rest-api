@@ -25,7 +25,10 @@ const { retailerAuthRouter } = require('./routes');
 app.use('/retail/', retailerAuthRouter);
 
 const { userAuthRouter } = require('./routes');
-app.use('/user/', userAuthRouter);
+app.use('/user/auth/', userAuthRouter);
+
+const { userCartRouter } = require('./routes');
+app.use('/user/cart/', userCartRouter);
 
 app.listen(5000, () => {
   console.log(
