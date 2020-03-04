@@ -2,8 +2,14 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const orderSchema = new Schema({
-  complete : {
+  delivered : {
     type : Boolean,
+  },
+  deliveryAddress : {
+    type : String,
+  },
+  amount : {
+    type : Number,
   },
 });
 
