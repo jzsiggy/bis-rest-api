@@ -39,7 +39,7 @@ app.use('/user/cart/', userCartRouter);
 const { userOrderRouter } = require('./routes');
 app.use('/user/order', userOrderRouter);
 
-app.listen(5000, () => {
+app.listen(process.env.PORT, () => {
   console.log(
     'BIS listening on port 5000',
   );
