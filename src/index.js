@@ -23,6 +23,10 @@ app.use(cors({
   credentials : true,
 }));
 
+app.use('/', (req, res, next) => {
+  console.log('connected');
+});
+
 const { retailerAuthRouter } = require('./routes');
 app.use('/retail/', retailerAuthRouter);
 
