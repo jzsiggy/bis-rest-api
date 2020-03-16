@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const mongooseConnect = () => {
-  mongoose.connect('mongodb://localhost:27017/BIS', {useNewUrlParser: true})
+  mongoose.connect(`${process.env.DB_CONNECTIONSTRING}`, {useNewUrlParser: true})
   .then(response => {
     console.log('Connected to mongoDB')
   })
