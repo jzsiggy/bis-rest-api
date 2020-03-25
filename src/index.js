@@ -19,13 +19,9 @@ app.use(session({
 }));
 
 app.use(cors({
-  origin : ['http://localhost:3000', 'https://bis-react.herokuapp.com'],
+  origin : ['http://localhost:3000'],
   credentials : true,
 }));
-
-app.use('/', (req, res, next) => {
-  console.log('connected');
-});
 
 const { retailerAuthRouter } = require('./routes');
 app.use('/retail/', retailerAuthRouter);

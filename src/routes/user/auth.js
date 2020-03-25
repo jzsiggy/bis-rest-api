@@ -9,6 +9,9 @@ const {
 const { logout } = require('../../controllers/auth/logout');
 const { getCurrentUser } = require('../../controllers/auth/getCurrentUser');
 
+// userAuthRouter.use('/', (req, res, next) => {
+//   console.log("Attempting auth")
+// })
 
 userAuthRouter.post('/signup', signupUser);
 userAuthRouter.post('/login', loginUser);
