@@ -6,8 +6,7 @@ const session = require('express-session');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const connectMongo = require('connect-mongo');
-
-app.use(require('cookie-parser')())
+const cookieParser = require('cookie-parser');
 
 const { mongooseConnect } = require('./config/mongooseConnect');
 mongooseConnect();
@@ -16,6 +15,7 @@ const MongoStore = connectMongo(session);
 
 const app = express();
 
+app.use(cookieParser())
 // app.set('trust proxy', true)
 
 app.use(session({
