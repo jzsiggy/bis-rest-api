@@ -16,14 +16,15 @@ const MongoStore = connectMongo(session);
 const app = express();
 
 app.use(cookieParser())
-// app.set('trust proxy', true)
+app.set('trust proxy', true);
 
 app.use(session({
   secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: false,
   cookie : {
     maxAge : 600000,
-    secure : false,
-    sameSite : false,
+    secure : true,
   },
   proxy : true,
   store: new MongoStore({
