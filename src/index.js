@@ -19,7 +19,7 @@ app.use(session({
 }));
 
 app.use(cors({
-  origin : ['http://localhost:3000', 'https://bis-react.herokuapp.com:3000'],
+  origin : ['https://bis-react.herokuapp.com'],
   credentials : true,
 }));
 
