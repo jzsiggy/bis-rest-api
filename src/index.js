@@ -19,7 +19,7 @@ app.use(session({
   secret: 'keyboard cat',
   cookie : {
     expires : false,
-    sameSite : false,
+    sameSite : "none",
   },
   store: new MongoStore({
     mongooseConnection : mongoose.connection,
