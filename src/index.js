@@ -16,9 +16,15 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended : false }));
 app.use(bodyParser.json());
 
+app.set('trust proxy', true)
+
 app.use(session({
   secret: 'keyboard cat',
-  cookie : { maxAge : 600000 },
+  cookie : {
+    maxAge : 600000,
+    secure : true,
+  },
+  proxy : true,
   store: new MongoStore({
     mongooseConnection : mongoose.connection,
   }),
