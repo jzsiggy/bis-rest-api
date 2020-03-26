@@ -14,13 +14,13 @@ const MongoStore = connectMongo(session);
 
 const app = express();
 
-app.set('trust proxy', true)
+// app.set('trust proxy', true)
 
 app.use(session({
   secret: 'keyboard cat',
   cookie : {
     maxAge : 600000,
-    secure : true,
+    secure : false,
   },
   proxy : true,
   store: new MongoStore({
