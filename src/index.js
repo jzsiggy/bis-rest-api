@@ -23,7 +23,7 @@ app.use(session({
   cookie : {
     maxAge : 600000,
     secure : false,
-    sameSite : false,
+    // sameSite : false,
   },
   proxy : true,
   store: new MongoStore({
