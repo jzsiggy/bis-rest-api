@@ -6,7 +6,6 @@ const session = require('express-session');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const connectMongo = require('connect-mongo');
-const cookieParser = require('cookie-parser');
 
 const { mongooseConnect } = require('./config/mongooseConnect');
 mongooseConnect();
@@ -15,31 +14,29 @@ const MongoStore = connectMongo(session);
 
 const app = express();
 
-// app.use(cookieParser())
-// app.set('trust proxy', true);
 
 app.use(session({
   secret: 'keyboard cat',
-  // resave: false,
-  // saveUninitialized: false,
-  // cookie : {
-  //   maxAge : 600000,
-  //   secure : true,
-  // },
+  cookie : {
+    maxAge : 600000,
+  },
   // proxy : true,
   store: new MongoStore({
     mongooseConnection : mongoose.connection,
+    resave : false,
+    saveUninitialized : false,
+    ttl : 24 * 60 * 60,
   }),
 }));
+
+app.use(bodyParser.urlencoded({ extended : false }));
+app.use(bodyParser.json());
 
 app.use(cors({
   origin : ['http://bis-react.herokuapp.com'],
   // origin : ['http://localhost:3000'],
   credentials : true,
 }));
-
-app.use(bodyParser.urlencoded({ extended : false }));
-app.use(bodyParser.json());
 
 const { retailerAuthRouter } = require('./routes');
 app.use('/retail/', retailerAuthRouter);
