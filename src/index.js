@@ -23,6 +23,7 @@ app.use(session({
   cookie : {
     maxAge : 600000,
     secure : false,
+    sameSite : false,
   },
   proxy : true,
   store: new MongoStore({
@@ -31,7 +32,8 @@ app.use(session({
 }));
 
 app.use(cors({
-  origin : ['http://bis-react.herokuapp.com'],
+  // origin : ['http://bis-react.herokuapp.com'],
+  origin : ['http://localhost:3000'],
   credentials : true,
 }));
 
