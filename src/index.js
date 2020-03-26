@@ -18,9 +18,8 @@ const app = express();
 app.use(session({
   secret: 'keyboard cat',
   cookie : {
-    maxAge : 600000,
+    expires : false,
   },
-  // proxy : true,
   store: new MongoStore({
     mongooseConnection : mongoose.connection,
     resave : false,
