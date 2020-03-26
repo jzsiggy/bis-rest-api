@@ -4,6 +4,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const cors = require('cors');
+const mongoose = require('mongoose');
+const MongoStore = require('connect-mongo')(session);
 
 const { mongooseConnect } = require('./config/mongooseConnect');
 mongooseConnect();
@@ -14,6 +16,10 @@ app.use(bodyParser.json());
 
 app.use(session({
   secret: 'keyboard cat',
+  cookie : { maxAge : 600000 },
+  store: new MongoStore({
+    mongooseConnection : mongoose.connection,
+  }),
   resave: false,
   saveUninitialized: true,
 }));
