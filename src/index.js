@@ -13,8 +13,6 @@ mongooseConnect();
 const MongoStore = connectMongo(session);
 
 const app = express();
-app.use(bodyParser.urlencoded({ extended : false }));
-app.use(bodyParser.json());
 
 app.set('trust proxy', true)
 
@@ -34,6 +32,9 @@ app.use(cors({
   origin : ['https://bis-react.herokuapp.com'],
   credentials : true,
 }));
+
+app.use(bodyParser.urlencoded({ extended : false }));
+app.use(bodyParser.json());
 
 const { retailerAuthRouter } = require('./routes');
 app.use('/retail/', retailerAuthRouter);
