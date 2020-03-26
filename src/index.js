@@ -5,10 +5,12 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const cors = require('cors');
 const mongoose = require('mongoose');
-const MongoStore = require('connect-mongo')(session);
+const connectMongo = require('connect-mongo');
 
 const { mongooseConnect } = require('./config/mongooseConnect');
 mongooseConnect();
+
+const MongoStore = connectMongo(session);
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended : false }));
@@ -20,8 +22,6 @@ app.use(session({
   store: new MongoStore({
     mongooseConnection : mongoose.connection,
   }),
-  resave: false,
-  saveUninitialized: true,
 }));
 
 app.use(cors({
