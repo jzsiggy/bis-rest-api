@@ -7,6 +7,8 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const connectMongo = require('connect-mongo');
 
+app.use(require('cookie-parser')())
+
 const { mongooseConnect } = require('./config/mongooseConnect');
 mongooseConnect();
 
